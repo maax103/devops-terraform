@@ -56,10 +56,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-resource "aws_eip" "eip" {
-  vpc = true
-}
-
 resource "aws_route_table" "route_public" {
   vpc_id = aws_vpc.max-vpc.id
   route {
@@ -77,11 +73,7 @@ resource "aws_route_table_association" "route_pub_b" {
   route_table_id = aws_route_table.route_public.id  
 }
 
-resource "aws_nat_gateway" "gw_nat" {
-  allocation_id = aws_eip.eip.id
-  subnet_id = aws_subnet.subnet_pub_b.id
-  tags = {
-    Unity = "${var.project_name}-vpc"
-    Name = "${var.project_name}_gw_nat"
-  }
+resource "aws_route_table_association" "route_pub_c" {
+  subnet_id = aws_subnet.subnet_pub_c.id
+  route_table_id = aws_route_table.route_public.id  
 }

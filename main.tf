@@ -21,16 +21,10 @@ module "vpc" {
 
 module "ec2" {
   source = "./modules/ec2"
-  nginx_pub_subnet_id = module.vpc.pub_subnet_b_id
+  nginx_pub_subnet_id_b = module.vpc.pub_subnet_b_id
+  nginx_pub_subnet_id_c = module.vpc.pub_subnet_c_id
+  priv_subnet_id_b = module.vpc.priv_subnet_b_id
+  priv_subnet_id_c = module.vpc.priv_subnet_c_id
   project_name = var.project_name
   vpc_id = module.vpc.vpc_id
 }
-
-# resource "aws_instance" "app_server" {
-#   ami = "ami-830c94e3"
-#   instance_type = "t2.micro"
-
-#   tags = {
-#     "Name" = "mainEc2"
-#   }
-# }

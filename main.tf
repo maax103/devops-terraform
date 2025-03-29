@@ -6,6 +6,12 @@ terraform {
     }
   }
 
+  backend "s3" {
+    bucket = "max-tf-state-devs2blu"
+    key = "exercicio-dart"
+    region = "us-west-1"
+  }
+
   required_version = ">=1.2.0"
 }
 
